@@ -1,5 +1,5 @@
 {
-  "name": "groupme-rankboy",
+  "name": "groupme-chat-rankings",
   "version": "1.0.0",
   "description":
     "An app that displays GroupMe chat rankings based on likes, 'LOL's and 'LMFAO's and a companion chat bot",
