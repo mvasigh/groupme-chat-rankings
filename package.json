@@ -1,8 +1,7 @@
 {
   "name": "groupme-chat-rankings",
   "version": "1.0.0",
-  "description":
-    "An app that displays GroupMe chat rankings based on likes, 'LOL's and 'LMFAO's and a companion chat bot",
+  "description": "An app that displays GroupMe chat rankings based on likes, 'LOL's and 'LMFAO's and a companion chat bot",
   "main": "index.js",
   "scripts": {
     "build:css": "node-sass ./scss/main.scss ./public/css/style.css -w"
@@ -12,6 +11,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "ejs": "^2.6.1",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "lodash": "^4.17.10"
   }
 }
