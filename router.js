@@ -1,6 +1,16 @@
 const express = require('express'),
-  router = express.Router();
+  router = express.Router(),
+  GroupChat = require('./js/GroupChat');
 
-router.get('/', (req, res) => res.render('index'));
+const GROUP_ID = require('./config/keys').GROUP_ID;
+const SCORE_CONFIG = require('./config/scores');
+
+router.get('/', (req, res) => {
+  GroupChat.getRankings(GROUP_ID, SCORE_CONFIG, 'week').then(data =>
+    Promise.all(data).then(rankings => {
+      res.render('index', { rankings });
+    })
+  );
+});
 
 module.exports = router;
