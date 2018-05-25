@@ -5,8 +5,9 @@ const express = require('express'),
 const GROUP_ID = require('./config/keys').GROUP_ID;
 const SCORE_CONFIG = require('./config/scores');
 
-router.get('/', (req, res) => {
-  GroupChat.getRankings(GROUP_ID, SCORE_CONFIG, 'week').then(data =>
+router.get('/home', (req, res) => {
+  const period = req.query.period || 'week';
+  GroupChat.getRankings(GROUP_ID, SCORE_CONFIG, period).then(data =>
     Promise.all(data).then(rankings => {
       res.render('index', { rankings });
     })

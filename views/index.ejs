@@ -8,8 +8,10 @@
   </head>
   <body>
     <% rankings.forEach(message => { %>
-      <p><%= message.text %> - <%= message.name %></p>
-      <p><strong>+<%= message.score %></strong></p>
+      <% if (message.attachments.length > 0) { %>
+        <p><%= message.attachments[0].url %></p>
+      <% } %>
+      <p><%= message.text %> - <%= message.name %> <strong>+<%= message.score %></strong></p>
     <% }) %>
   </body>
 </html>
