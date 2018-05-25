@@ -42,7 +42,7 @@ function getMessageScore(message, scoreConfig) {
 }
 
 function getRankings(groupId, scoreConfig, period = 'week') {
-  return getLeaderboard(groupId, 'week').then(entries => {
+  return getLeaderboard(groupId, period).then(entries => {
     return entries.map(entry => {
       return getMessageScore(entry, scoreConfig).then(score => {
         return {
