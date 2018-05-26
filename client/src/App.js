@@ -27,9 +27,18 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container mt-4">
-        <RankList rankings={this.state.response} />
-      </div>
+      <section className="section is-primary is-bold">
+        <div className="container-fluid">
+          <div className="columns">
+            <div className="column is-half is-offset-one-quarter">
+              <h1 className="title has-text-centered has-text-white">
+                Good Ole... Rankings
+              </h1>
+              <RankList rankings={this.state.response} />
+            </div>
+          </div>
+        </div>
+      </section>
     );
   }
 }

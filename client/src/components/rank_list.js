@@ -7,7 +7,7 @@ const RankList = props => {
     return <RankListItem message={item} key={item.id} />;
   });
 
-  return <ul className="list-group">{rankItems}</ul>;
+  return <div className="list-group">{rankItems}</div>;
 };
 
 export default RankList;
