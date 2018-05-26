@@ -6,7 +6,7 @@ const app = express();
 
 // APP CONFIG
 // ==========
-app.use(express.static(path.join(__dirname, 'client/public')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.set('view engine', 'ejs');
 
 // ROUTES CONFIG
@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 app.use('/api/rankings', rankingsRoutes);
 app.get('/', (req, res) => res.redirect('/api/rankings'));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/public/index.html'));
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 const port = process.env.PORT || 5000;

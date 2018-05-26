@@ -5,7 +5,8 @@
     "An app that displays GroupMe chat rankings based on likes, 'LOL's and 'LMFAO's and a companion chat bot",
   "main": "index.js",
   "scripts": {
-    "build:css": "node-sass ./scss/main.scss ./public/css/style.css -w"
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "Mehdi Vasigh",
   "license": "ISC",
