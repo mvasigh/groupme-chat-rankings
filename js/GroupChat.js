@@ -45,12 +45,8 @@ function getRankings(groupId, scoreConfig, period = 'week') {
   return getLeaderboard(groupId, period).then(entries => {
     return entries.map(entry => {
       return getMessageScore(entry, scoreConfig).then(score => {
-        return {
-          name: entry.name,
-          text: entry.text,
-          attachments: entry.attachments,
-          score
-        };
+        console.log({ ...entry, score });
+        return { ...entry, score };
       });
     });
   });
