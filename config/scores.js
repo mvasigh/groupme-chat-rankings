@@ -1,11 +1,11 @@
 module.exports = {
-  like: 40,
+  like: 70,
   triggers: {
-    lol: 30,
-    LOL: 40,
-    lmao: 100,
-    LMAO: 200,
-    'lmao!': 200,
+    lol: 70,
+    LOL: 90,
+    lmao: 210,
+    LMAO: 330,
+    'lmao!': 330,
     'LMAO!': 400,
     lmfao: 400,
     LMFAO: 800,
