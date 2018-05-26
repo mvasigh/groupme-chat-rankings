@@ -1,5 +1,5 @@
 const express = require('express'),
-  router = require('./router');
+  rankingsRoutes = require('./routes/api/rankings');
 
 const app = express();
 
@@ -10,8 +10,8 @@ app.set('view engine', 'ejs');
 
 // ROUTES CONFIG
 // =============
-app.use('/', router);
+app.use('/api/rankings', rankingsRoutes);
 
-app.listen(3000, () => {
+app.listen(5000, () => {
   console.log('Server is running');
 });
