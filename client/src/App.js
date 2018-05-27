@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RankList from './components/rank_list';
+import PeriodButtonGroup from './components/period_button_group';
 
 import axios from 'axios';
 
@@ -9,8 +10,10 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    // 'period' will be lifted up from child component
     this.state = {
-      response: []
+      response: [],
+      period: 'month'
     };
   }
 
@@ -21,7 +24,7 @@ class App extends Component {
     });
   }
 
-  getRankings = async (period = 'week') => {
+  getRankings = async (period = this.state.period) => {
     return await axios.get(`/api/rankings?period=${period}`);
   };
 
@@ -34,6 +37,11 @@ class App extends Component {
               <h1 className="title has-text-centered has-text-white">
                 Good Ole... Rankings
               </h1>
+              <div className="level">
+                <div className="level-item">
+                  <PeriodButtonGroup />
+                </div>
+              </div>
               <RankList rankings={this.state.response} />
             </div>
           </div>
