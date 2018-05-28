@@ -9,19 +9,27 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.handlePeriodChange = this.handlePeriodChange.bind(this);
 
     // 'period' will be lifted up from child component
     this.state = {
       response: [],
-      period: 'month'
+      period: 'week'
     };
   }
 
   componentDidMount() {
-    this.getRankings('month').then(response => {
+    this.getRankings(this.state.period).then(response => {
       console.log(response.data);
       this.setState({ response: response.data });
     });
+  }
+
+  handlePeriodChange(period) {
+    this.setState({ period });
+    this.getRankings(period).then(response =>
+      this.setState({ response: response.data })
+    );
   }
 
   getRankings = async (period = this.state.period) => {
@@ -30,16 +38,22 @@ class App extends Component {
 
   render() {
     return (
-      <section className="section is-primary is-bold">
+      <section className="section has-background-grey-dark">
         <div className="container-fluid">
           <div className="columns">
-            <div className="column is-half is-offset-one-quarter">
-              <h1 className="title has-text-centered has-text-white">
+            <div className="column is-one-third is-offset-one-third">
+              <p className="title has-text-centered has-text-white">
                 Good Ole... Rankings
-              </h1>
+              </p>
+              <p className="subtitle has-text-centered has-text-white">
+                This {this.state.period}'s top messages
+              </p>
               <div className="level">
                 <div className="level-item">
-                  <PeriodButtonGroup />
+                  <PeriodButtonGroup
+                    period={this.state.period}
+                    onPeriodChange={this.handlePeriodChange}
+                  />
                 </div>
               </div>
               <RankList rankings={this.state.response} />
