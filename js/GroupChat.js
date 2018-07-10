@@ -1,7 +1,31 @@
+const CHAT_CONFIG = require('../config/chat');
 const AXIOS_CONFIG = require('../config/axios');
 const axios = require('axios').create(AXIOS_CONFIG);
 
-function getLeaderboard(groupId, period = 'week') {
+const Message = require('./Message');
+
+class GroupChat {
+  constructor(groupId) {
+    this.groupId = groupId;
+  }
+
+  async getLeaderboard(
+    groupId = this.groupId,
+    period = CHAT_CONFIG.periods[0]
+  ) {
+    period = CHAT_CONFIG.includes(period) ? period : CHAT_CONFIG.periods[0];
+    const leaderboard = await axios
+      .get(`/groups/${groupId}/likes?period=${period}`)
+      .then(response => response.data.response.messages)
+      .then(messages => messages.filter(msg => msg.name != 'GroupMe'))
+      .catch(err => console.log(err));
+    return leaderboard;
+  }
+
+  // getRankings
+}
+
+function getLeaderboard(groupId, period = CHAT_CONFIG.periods[0]) {
   const periodOpts = ['day', 'week', 'month'];
   if (!periodOpts.includes(period)) period = 'week';
 
