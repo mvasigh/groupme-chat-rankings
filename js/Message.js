@@ -25,4 +25,27 @@ class Message {
   }
 }
 
+function getMessageScore(message, scoreConfig) {
+  let score = scoreConfig.like * message.favorited_by.length;
+  const triggers = Object.keys(scoreConfig.triggers);
+  // TODO: Use RegExp for this. Maybe change the triggers config to regex strings
+  // and create a new regexp object for each trigger here
+
+  // Use String.prototype.match() to match against regex.
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match
+  return getMessageReplies(message.id, message.group_id)
+    .then(replies => {
+      replies.forEach(reply => {
+        triggers.forEach(trigger => {
+          if (reply.text && reply.text.includes(trigger)) {
+            score += scoreConfig.triggers[trigger];
+          }
+        });
+      });
+      return score;
+    })
+    .catch(e => console.log(e));
+}
+
+
 module.exports = Message;
