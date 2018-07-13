@@ -1,17 +1,14 @@
 const express = require('express'),
   router = express.Router(),
-  GroupChat = require('../../js/GroupChat');
+  GroupChat = require('../../lib/GroupChat');
 
 const GROUP_ID = process.env.GROUP_ID || require('../../config/keys').GROUP_ID;
-const SCORE_CONFIG = require('../../config/scores');
+const groupChat = new GroupChat(GROUP_ID);
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const period = req.query.period || 'week';
-  GroupChat.getRankings(GROUP_ID, SCORE_CONFIG, period).then(data =>
-    Promise.all(data).then(rankings => {
-      res.json(rankings.sort((a, b) => b.score - a.score));
-    })
-  );
+  const rankings = await groupChat.getRankings(period);
+  res.json(rankings);
 });
 
 module.exports = router;
