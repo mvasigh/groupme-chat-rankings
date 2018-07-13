@@ -1,7 +1,7 @@
 const SCORE_CONFIG = {
   base: {
     like: 70,
-    multiplier: 1.2
+    multiplier: 0.2
   },
   triggers: [
     {
