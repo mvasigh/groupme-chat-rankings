@@ -23,6 +23,7 @@
     "node": "8.11.1"
   },
   "devDependencies": {
-    "bulma": "^0.7.1"
+    "bulma": "^0.7.1",
+    "mocha": "^5.2.0"
   }
 }
