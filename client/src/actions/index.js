@@ -8,34 +8,24 @@ import {
 
 const ROOT_URL = '/api/rankings?period=';
 
-// TODO - refactor getRankings action creators as one function that returns payload of object
-// Object will have property with key of the period, and value of the rankings
-// i.e. payload: { week: [...] }
+export function getRankings(period = 'week') {
+  const request = axios.get(`${ROOT_URL}${period}`);
+  let type;
 
-
-export function getDayRankings() {
-  const request = axios.get(`${ROOT_URL}day`);
-
-  return {
-    type: GET_DAY_RANKINGS,
-    payload: request
-  };
-}
-
-export function getWeekRankings() {
-  const request = axios.get(`${ROOT_URL}week`);
-
-  return {
-    type: GET_WEEK_RANKINGS,
-    payload: request
-  };
-}
-
-export function getMonthRankings() {
-  const request = axios.get(`${ROOT_URL}month`);
+  switch (period) {
+    case 'day':
+      type = GET_DAY_RANKINGS;
+      break;
+    case 'week':
+      type = GET_WEEK_RANKINGS;
+      break;
+    case 'month':
+      type = GET_MONTH_RANKINGS;
+      break;
+  }
 
   return {
-    type: GET_MONTH_RANKINGS,
+    type,
     payload: request
   };
 }
