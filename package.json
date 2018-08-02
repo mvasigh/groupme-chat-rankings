@@ -15,15 +15,10 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
-    "ejs": "^2.6.1",
     "express": "^4.16.3",
     "lodash": "^4.17.10"
   },
   "engines": {
     "node": "8.11.1"
-  },
-  "devDependencies": {
-    "bulma": "^0.7.1",
-    "mocha": "^5.2.0"
   }
 }
