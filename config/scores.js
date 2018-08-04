@@ -6,7 +6,7 @@ const SCORE_CONFIG = {
   triggers: [
     {
       name: 'lol',
-      pattern: /lo+l/,
+      pattern: /[L|l]o+l/,
       score: 35
     },
     {
@@ -16,7 +16,7 @@ const SCORE_CONFIG = {
     },
     {
       name: 'lmao',
-      pattern: /lmao+/,
+      pattern: /[L|l]mao+/,
       score: 150
     },
     {
@@ -26,7 +26,7 @@ const SCORE_CONFIG = {
     },
     {
       name: 'lmao!',
-      pattern: /lmao+!+/,
+      pattern: /[L|l]mao+!+/,
       score: 330
     },
     {
@@ -36,7 +36,7 @@ const SCORE_CONFIG = {
     },
     {
       name: 'lmfao',
-      pattern: /lmfao+/,
+      pattern: /[L|l]mfao+/,
       score: 350
     },
     {
