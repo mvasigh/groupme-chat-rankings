@@ -1,28 +1,70 @@
-import React from 'react';
+import React, { Component } from 'react';
+import moment from 'moment';
+import Avatar from './Avatar';
 
-// TODO - add date label, attachments, avatar, favorites, score UI elements
+class Message extends Component {
+  renderBottomBar() {
+    const { favorited_by } = this.props;
+    const likes = favorited_by.length;
 
-const Message = ({ name = 'Anonymous', text = '(Empty message)' }) => {
-  return (
-    <div className="box">
-      <article className="media">
-        <figure className="media-left">
-          <p className="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/128x128.png" />
-          </p>
-        </figure>
-        <div className="media-content">
-          <div className="content">
-            <p>
-              <strong>{name}</strong> <small>21 minutes ago</small>
-              <br />
-              {text}
-            </p>
+    return (
+      <nav className="level">
+        <div className="level-left">
+          <div className="level-item">
+            <span className="has-text-danger">{`${likes} like${
+              likes > 1 ? 's' : ''
+            }`}</span>
           </div>
         </div>
-      </article>
-    </div>
-  );
-};
+      </nav>
+    );
+  }
+
+  render() {
+    const {
+      name,
+      text,
+      avatar_url,
+      created_at,
+      favorited_by,
+      attachments,
+      score
+    } = this.props;
+    const createdAtMoment = moment.unix(created_at);
+
+    return (
+      <div className="box">
+        <article className="media">
+          <figure className="media-left">
+            <Avatar img={avatar_url} />
+          </figure>
+          <div className="media-content">
+            <div className="content">
+              <span className="tag is-pulled-right is-dark">+{score}</span>
+              <p>
+                <div style={{ paddingBottom: '12px' }}>
+                  <strong>{name}</strong>{' '}
+                  <small>{createdAtMoment.fromNow()}</small>
+                </div>
+                {text ? text : <span className="has-text-grey">(no text)</span>}
+              </p>
+            </div>
+            {attachments.length > 0 ? (
+              <span className="tag">
+                <a className="has-text-dark" href={attachments[0].url}>
+                  View attachment
+                </a>
+              </span>
+            ) : (
+              ''
+            )}
+          </div>
+        </article>
+        <hr style={{ marginBottom: '16px' }} />
+        {this.renderBottomBar()}
+      </div>
+    );
+  }
+}
 
 export default Message;
