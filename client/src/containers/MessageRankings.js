@@ -32,11 +32,7 @@ class MessageRankings extends Component {
   };
 
   getMessageList() {
-    const rankings = this.props.rankings[this.props.period] || [];
-    return rankings.map(entry => {
-      const { message, score } = entry;
-      return { ...message, score };
-    });
+    return this.props.rankings[this.props.period] || [];
   }
 
   render() {
