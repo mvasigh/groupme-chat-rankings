@@ -14,11 +14,15 @@ class MessageRankings extends Component {
     const options = ['day', 'week', 'month'];
 
     return (
-      <ButtonSelectGroup
-        options={options}
-        active={this.props.period}
-        onSelect={this.handleFilterSelect}
-      />
+      <div className="level">
+        <div className="level-item">
+          <ButtonSelectGroup
+            options={options}
+            active={this.props.period}
+            onSelect={this.handleFilterSelect}
+          />
+        </div>
+      </div>
     );
   }
 
@@ -35,11 +39,11 @@ class MessageRankings extends Component {
     });
   }
 
-render() {
+  render() {
     return (
       <div>
         <Heading type="subtitle" size={6}>
-          This week's top messages
+          This {this.props.period}'s top messages
         </Heading>
         {this.renderPeriodFilter()}
         <MessageList messages={this.getMessageList()} />
