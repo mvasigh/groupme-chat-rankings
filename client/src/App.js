@@ -15,7 +15,7 @@ class App extends Component {
               Good Ole... Rankings
             </Heading>
             <Heading type="subtitle" size={6}>
-              See all the ranks
+              Highlights from the group chat
             </Heading>
             <MessageRankings />
           </Column>
