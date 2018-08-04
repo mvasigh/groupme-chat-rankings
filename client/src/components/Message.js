@@ -3,6 +3,14 @@ import moment from 'moment';
 import Avatar from './Avatar';
 
 class Message extends Component {
+  state = {
+    expanded: false
+  };
+
+  handleExpandReplies = () => {
+    this.setState({ expanded: !this.state.expanded });
+  };
+
   renderBottomBar() {
     const { favorited_by } = this.props;
     const likes = favorited_by.length;
@@ -16,8 +24,39 @@ class Message extends Component {
             }`}</span>
           </div>
         </div>
+        <div className="level-right">
+          <div className="level-item">
+            <a className="has-text-dark" onClick={this.handleExpandReplies}>
+              {this.state.expanded ? 'Collapse replies' : 'Expand replies'}
+            </a>
+          </div>
+        </div>
       </nav>
     );
+  }
+
+  renderReplyList() {
+    const replies = this.props.replies.filter(reply => reply.score > 0);
+    const { expanded } = this.state;
+
+    if (!expanded) {
+      return;
+    }
+
+    if (replies.length === 0) {
+      return <span className="has-text-grey">(no scoring replies)</span>;
+    }
+
+    const replyListItems = replies.map((reply, i) => (
+      <li style={i > 0 ? { marginTop: '6px' } : {}}>
+        <span className="tag">+{reply.score}</span>
+        <span style={{ marginLeft: '12px' }}>
+          <small>{reply.text}</small>
+        </span>
+      </li>
+    ));
+
+    return <ul>{replyListItems}</ul>;
   }
 
   render() {
@@ -62,6 +101,7 @@ class Message extends Component {
         </article>
         <hr style={{ marginBottom: '16px' }} />
         {this.renderBottomBar()}
+        {this.renderReplyList()}
       </div>
     );
   }
