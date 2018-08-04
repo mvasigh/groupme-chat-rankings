@@ -4,7 +4,13 @@ import Message from './Message';
 const MessageList = ({ messages = [] }) => {
   const renderMessages = () => {
     if (messages.length === 0) {
-      return <div>Loading...</div>;
+      return (
+        <div className="level">
+          <div className="level-item" style={{ paddingTop: '24px' }}>
+            <p className="subtitle has-text-grey is-6">Loading...</p>
+          </div>
+        </div>
+      );
     }
     return messages.map((message, i) => {
       return (
