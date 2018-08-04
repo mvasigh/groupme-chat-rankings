@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ButtonSelectGroup = ({ options = [], onSelect = fn => fn }) => {
+const ButtonSelectGroup = ({ options = [], active, onSelect = fn => fn }) => {
   const renderButtons = () => {
     return options.map((option, i) => (
       <p key={i} className="control">
         <a
-          className="button"
+          className={`button ${option === active ? 'is-active' : ''}`}
           onClick={() => onSelect(option)}
           style={{ textTransform: 'capitalize' }}
         >
